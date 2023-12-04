@@ -1,0 +1,5 @@
+---
+wakapi_enabled: false
+wakapi_data_directory: "{{ data_directory }}/wakapi"
+wakapi_container_name: "wakapi"
+wakapi_container_image: "ghcr.io/muety/wakapi:latest"

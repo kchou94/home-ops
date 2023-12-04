@@ -1,0 +1,9 @@
+---
+cloudflared_enabled: false
+cloudflared_config_directory: "{{ config_directory }}/cloudflared"
+cloudflared_container_name: "cloudflared"
+cloudflared_container_image: "cloudflare/cloudflared:latest"
+cloudflared_account_tag: ""
+cloudflared_tunnel_secret: ""
+cloudflared_tunnel_id: ""
+cloudflared_tunnel_domain_name: "{{ domain_name }}"

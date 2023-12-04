@@ -1,0 +1,21 @@
+---
+- name: Ansible home-ops
+  hosts: all
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+
+  tasks:
+    - name: Configure general settings
+      ansible.builtin.include_role:
+        name: general
+
+    - name: Install cloudflared
+      ansible.builtin.include_role:
+        name: cloudflared
+      when: cloudflared_enabled is defined and cloudflared_enabled
+
+    - name: Install wakapi
+      ansible.builtin.include_role:
+        name: wakapi
+      when: wakapi_enabled is defined and wakapi_enabled

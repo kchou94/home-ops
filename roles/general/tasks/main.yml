@@ -1,0 +1,24 @@
+---
+- name: Install apt packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker.io
+    - vim
+
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    group: docker
+    append: true
+
+- name: Start docker and make sure it starts on boot
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Create a docker network
+  community.docker.docker_network:
+    name: home_ops

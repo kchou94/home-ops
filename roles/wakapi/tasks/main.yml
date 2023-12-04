@@ -1,0 +1,32 @@
+---
+- name: Start wakapi
+  when: wakapi_enabled is true
+  block:
+  - name: Create wakapi Directories
+    ansible.builtin.file:
+      path: "{{ item }}"
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+      mode: "0755"
+      state: directory
+    with_items:
+      - "{{ wakapi_data_directory }}"
+  - name: Wakapi Container
+    community.docker.docker_container:
+      name: "{{ wakapi_container_name }}"
+      image: "{{ wakapi_container_image }}"
+      volumes:
+        - "{{ wakapi_data_directory }}:/data"
+      env:
+        WAKAPI_PASSWORD_SALT: "tiYnKWL7xSc6hhENTw01u7mP55Mg1Rsb"
+      networks:
+        - name: home_ops
+      restart_policy: always
+
+- name: Stop wakapi
+  when: wakapi_enabled is false
+  block:
+    - name: Stop wakapi
+      community.docker.docker_container:
+        name: "{{ wakapi_container_name }}"
+        state: absent

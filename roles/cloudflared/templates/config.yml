@@ -1,0 +1,5 @@
+ingress:
+  - hostname: "wakapi.{{ cloudflared_tunnel_domain_name }}"
+    service: http://wakapi:3000
+
+  - service: http_status:404

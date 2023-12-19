@@ -2,4 +2,7 @@ ingress:
   - hostname: "wakapi.{{ cloudflared_tunnel_domain_name }}"
     service: http://wakapi:3000
 
+  - hostname: "siyuan.{{ cloudflared_tunnel_domain_name }}"
+    service: http://siyuan:6806
+
   - service: http_status:404

@@ -1,0 +1,9 @@
+---
+# cloudflared
+cloudflared_enabled: true
+cloudflared_config_directory: "{{ config_directory }}/cloudflared"
+cloudflared_container_name: "cloudflared"
+cloudflared_container_image: "cloudflare/cloudflared:2023.10.0"
+cloudflared_account_tag: "8c62767a145700c166c76e5077faae25"
+cloudflared_tunnel_secret: "QQKvooB8E5KBwi732LytFicSD6H2AfhYABluRKTtU7Y="
+cloudflared_tunnel_id: "f58277e6-d1fe-419f-b8a3-afb9bfa6b9f1"

@@ -1,0 +1,21 @@
+---
+- name: Init a new swarm with default parameters
+  community.docker.docker_swarm:
+    state: present
+    advertise_addr: "{{ ansible_host }}"
+  register: result
+  when: inventory_hostname == "y9000p"
+  become: true
+
+- name: Get join-token for worker nodes
+  ansible.builtin.set_fact:
+    join_token_worker: "{{ hostvars.y9000p.result.swarm_facts.JoinTokens.Worker }}"
+
+- name: Add worker nodes
+  community.docker.docker_swarm:
+    state: join
+    advertise_addr: "{{ ansible_host }}"
+    join_token: "{{ join_token_worker }}"
+    remote_addrs: "{{ hostvars.y9000p.ansible_host }}"
+  when: inventory_hostname == "b550m"
+  become: true

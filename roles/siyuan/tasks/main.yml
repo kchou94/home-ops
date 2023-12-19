@@ -1,0 +1,35 @@
+---
+- name: Start siyuan
+  when: siyuan_enabled is true
+  block:
+  - name: Create siyuan directories
+    ansible.builtin.file:
+      path: "{{ item }}"
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+      mode: "0755"
+      state: directory
+    with_items:
+      - "{{ siyuan_data_directory }}"
+  - name: Star siyuan container
+    community.docker.docker_container:
+      name: "{{ siyuan_container_name }}"
+      image: "{{ siyuan_container_image }}"
+      command:
+        - "--accessAuthCode={{ siyuan_access_auth_code }}"
+      volumes:
+        - "{{ siyuan_data_directory }}:/siyuan/workspace"
+      env:
+        TZ: "Asia/Shanghai"
+      networks:
+        - name: home_ops
+      user: "{{ ansible_user }}:{{ ansible_user }}"
+      restart_policy: always
+
+- name: Stop siyuan
+  when: siyuan_enabled is false
+  block:
+    - name: Stop siyuan
+      community.docker.docker_container:
+        name: "{{ siyuan_container_name }}"
+        state: absent

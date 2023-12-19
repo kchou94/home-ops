@@ -2,4 +2,4 @@
 config_directory: "/data/app_config"
 data_directory: "/data/app_data"
 ansible_user: "kchou"
-domain_name: "ggbu.moe"
+domain_name: ""

@@ -1,0 +1,6 @@
+---
+siyuan_enabled: false
+siyuan_data_directory: "{{ data_directory }}/siyuan"
+siyuan_container_name: "siyuan"
+siyuan_container_image: "b3log/siyuan:latest"
+siyuan_access_auth_code: ""

@@ -1,0 +1,20 @@
+---
+# docker
+docker_daemon_options:
+  storage-driver: "overlay2"
+  data-root: "/data/docker"
+  log-opts:
+    max-size: "100m"
+
+# wakapi
+wakapi_enabled: true
+wakapi_data_directory: "{{ data_directory }}/wakapi"
+wakapi_container_name: "wakapi"
+wakapi_container_image: "ghcr.io/muety/wakapi:2.10.0"
+
+# siyuan
+siyuan_enabled: true
+siyuan_data_directory: "{{ data_directory }}/siyuan"
+siyuan_container_name: "siyuan"
+siyuan_container_image: "b3log/siyuan:latest"
+siyuan_access_auth_code: ""

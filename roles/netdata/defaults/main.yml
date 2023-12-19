@@ -1,0 +1,6 @@
+---
+netdata_image_repository: netdata/netdata
+netdata_image_tag: v1.44.1
+netdata_claim_token: ""
+netdata_claim_rooms: ""
+netdata_claim_url: https://app.netdata.cloud

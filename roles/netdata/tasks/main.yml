@@ -1,0 +1,16 @@
+---
+- name: Template compose file to compose file dir
+  ansible.builtin.template:
+    src: netdata.yml.j2
+    dest: "{{ swarm_compose_file_dir }}/netdata.yml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  become: true
+
+- name: Deploy netdata stack from netdata compose file
+  community.docker.docker_stack:
+    state: present
+    name: netdata
+    compose:
+      - "{{ swarm_compose_file_dir }}/netdata.yml"

@@ -1,5 +1,5 @@
 ---
 config_directory: "/data/app_config"
 data_directory: "/data/app_data"
-ansible_user: "kchou"
 domain_name: ""
+swarm_compose_file_dir: /data/compose

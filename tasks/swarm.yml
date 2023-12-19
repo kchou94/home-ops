@@ -19,3 +19,18 @@
     remote_addrs: "{{ hostvars.y9000p.ansible_host }}"
   when: inventory_hostname == "b550m"
   become: true
+
+- name: Create compose file dir
+  ansible.builtin.file:
+    path: "{{ swarm_compose_file_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  become: true
+
+- name: Install deps
+  ansible.builtin.apt:
+    name: python3-jsondiff
+    state: present
+  become: true

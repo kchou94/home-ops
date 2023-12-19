@@ -25,7 +25,12 @@
       tags:
         - swarm
 
-  # tasks:
+    - name: Install netdata
+      ansible.builtin.include_role:
+        name: netdata
+      tags:
+        - netdata
+
   #   - name: Configure general settings
   #     ansible.builtin.include_role:
   #       name: general
